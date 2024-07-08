@@ -4,8 +4,15 @@
   "description": "small and fast url shortener",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.4.4",
+    "nanoid": "^5.0.7",
+    "shortid": "^2.2.16"
+  }
 }
