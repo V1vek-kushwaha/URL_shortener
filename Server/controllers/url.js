@@ -13,13 +13,27 @@ async function handleNewShortURLGenerator(req, res) {
   return res.json({ id: shortId });
 }
 async function handleAnalytics(req, res) {
-  const Id = req.params.shortId;
-  const result = await URL.findOne({ Id });
-  return res.json({
-    // TotalClicks: result.visitHistory,
-    Analytics: result.visitHistory,
-  });
+  const shortID = req.params.shortId;
+  console.log("Received shortId:", shortID); // Log the received shortId
+
+  try {
+    const result = await URL.findOne({ shortID });
+    console.log("Query result:", result); // Log the result from MongoDB query
+
+    if (!result) {
+      return res.status(404).json({ error: "Analytics data not found" });
+    }
+
+    return res.json({
+      totalClicks: result.visitHistory.length,
+      analytics: result.visitHistory,
+    });
+  } catch (error) {
+    console.error("Error fetching analytics:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 }
+
 async function handleRedirectURL(req, res) {
   const shortId = req.params.shortId;
 
