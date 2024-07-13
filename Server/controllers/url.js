@@ -10,7 +10,8 @@ async function handleNewShortURLGenerator(req, res) {
     redirectURL: body.url,
     visitHistory: [],
   });
-  return res.json({ id: shortId });
+  return res.render("home", { id: shortId });
+  // return res.json({ id: shortId });
 }
 async function handleAnalytics(req, res) {
   const shortID = req.params.shortId;
@@ -53,8 +54,9 @@ async function handleRedirectURL(req, res) {
 
     // If entry is found, redirect to the original URL
     if (entry && entry.redirectURL) {
-      console.log("Redirecting to:", entry.redirectURL);
-      res.redirect("https://" + entry.redirectURL);
+      // console.log("Redirecting to:", entry.redirectURL);
+      // res.redirect("https://" + entry.redirectURL);
+      res.redirect(entry.redirectURL);
     } else {
       // Handle case where entry is not found or redirectURL is not defined
       console.log(

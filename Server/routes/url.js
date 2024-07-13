@@ -6,7 +6,7 @@ const {
 } = require("../controllers/url");
 const router = express.Router();
 
-router.post("/url", handleNewShortURLGenerator);
+router.post("/new", handleNewShortURLGenerator);
 router.get("/analytics/:shortId", handleAnalytics);
 router.get("/:shortId", handleRedirectURL);
 
